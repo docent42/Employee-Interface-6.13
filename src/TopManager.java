@@ -1,8 +1,10 @@
-public class TopManager extends Employee
+public class TopManager implements Employee
 {
-    private double salary;
+    private String name;   // имя
+    private Proff profession; // професссия
+    private double salary; // зарплата
 
-    public static TopManager getInstance(String name, double money)
+    static TopManager getInstance(String name, double money)
     {
         return new TopManager(name,money);
     }
@@ -19,17 +21,25 @@ public class TopManager extends Employee
         return salary;
     }
 
-    @Override
-    double initSalary(double money) {
+    private double initSalary(double money) {
         double fix, bonus;
         fix = (double)Math.round(Math.random() * 3000000)/100 + 150000;
         bonus = (money > 10000000) ?  50000 :  0;
         return fix + bonus;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
 
     @Override
-    public int compareTo(Employee o) {
-        return Double.compare(getMonthSalary(),o.getMonthSalary()) ;
+    public String getProfession() {
+        return profession.name;
+    }
+    @Override
+    public String toString()
+    {
+        return String.format("%-13s%-22s",getName(),getProfession());
     }
 }

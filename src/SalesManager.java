@@ -1,9 +1,10 @@
-public class SalesManager extends Employee
-
+public class SalesManager implements Employee
 {
+    private String name;   // имя
+    private Proff profession; // професссия
     private double salary; // зарплата
 
-    public static SalesManager getInstance(String name)
+    static SalesManager getInstance(String name)
     {
         return new SalesManager(name,(double)Math.round(Math.random() * 50000000)/100 + 1000000);
     }
@@ -20,8 +21,7 @@ public class SalesManager extends Employee
         return salary;
     }
 
-    @Override // создание зарплаты (у каждого свой метод)
-    double initSalary(double money)
+    private double initSalary(double money)
     {
         double fix, bonus;
         fix = (double)Math.round(Math.random() * 2500000)/100 + 25000;
@@ -29,8 +29,18 @@ public class SalesManager extends Employee
         return fix + bonus;
     }
 
-    @Override // реализация Comparable
-    public int compareTo(Employee o) {
-        return Double.compare(getMonthSalary(),o.getMonthSalary()) ;
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getProfession() {
+        return profession.name;
+    }
+    @Override
+    public String toString()
+    {
+        return String.format("%-13s%-22s",getName(),getProfession());
     }
 }

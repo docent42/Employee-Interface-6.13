@@ -1,8 +1,13 @@
-public abstract class Employee implements Salary,Comparable<Employee>
+public interface Employee extends Comparable<Employee>
 {
-    String name;   // имя
-    Proff profession; // професссия
 
-    abstract double initSalary(double money);// генератор зарплаты
+    double getMonthSalary();
+    String getName();
+    String getProfession();
+
+    default int compareTo(Employee o)
+    {
+        return Double.compare(getMonthSalary(), o.getMonthSalary());
+    }
 
 }
